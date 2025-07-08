@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vergiss1409 - Forget me not</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'SpringEgg';
+      src: url('https://cdn.jsdelivr.net/gh/fonts-pro/viet-hoa/SpringEgg/SpringEgg.ttf') format('truetype');
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #fffbe6;
+      color: #333;
+    }
+
+    header {
+      background-color: #ffcc70;
+      color: #222;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .site-title {
+      font-family: 'SpringEgg', cursive;
+      font-size: 2.5em;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0;
+    }
+
+    .logo {
+      height: 50px;
+      width: auto;
+      vertical-align: middle;
+      margin-right: 10px;
+      background: transparent;
+    }
+
+    .banner-image {
+      max-width: 90%;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      background-color: #ffeaa7;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 10px;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      background-color: #fcd34d;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .comic-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .comic-item {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      background-color: #fff;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .comic-item img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .comic-item h3 {
+      margin-top: 10px;
+      color: #e67e22;
+    }
+
+    .upload-section {
+      border: 2px dashed #ccc;
+      padding: 30px;
+      margin-top: 40px;
+      text-align: center;
+      border-radius: 10px;
+      background-color: #fffdf5;
+      display: none;
+    }
+
+    .upload-section input,
+    .upload-section button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    .sitemap {
+      margin: 40px auto;
+      background: #fffdfa;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 800px;
+    }
+
+    .sitemap h2 {
+      font-family: 'SpringEgg', cursive;
+      color: #e67e22;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .sitemap ul {
+      list-style-type: square;
+      padding-left: 40px;
+      line-height: 1.8;
+    }
+
+    .sitemap ul li {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="site-title">
+      <img src="images/logo.png" alt="logo" class="logo">
+      Vergiss1409
+    </h1>
+    <img src="images/banner.png" alt="Banner Vergiss1409" class="banner-image">
+  </header>
+
+  <nav>
+    <a href="#">Trang chủ</a>
+    <a onclick="loginUpload()">Góc quản trị viên</a>
+  </nav>
+
+  <main>
+    <section class="comic-list">
+      <div class="comic-item">
+        <img src="https://via.placeholder.com/250x350" alt="Bìa truyện">
+        <h3>Tên truyện</h3>
+        <p>Mô tả ngắn hoặc tóm tắt truyện...</p>
+      </div>
+    </section>
+
+    <section id="upload" class="upload-section">
+      <h2>Góc Dành Cho Quản Trị Viên</h2>
+      <p>(Chỉ quản trị viên mới có quyền đăng tải truyện)</p>
+      <form>
+        <input type="text" placeholder="Tên truyện">
+        <input type="file" multiple>
+        <button type="submit">Tải truyện lên</button>
+      </form>
+    </section>
+
+    <section class="sitemap">
+      <h2>Sơ đồ trang</h2>
+      <ul>
+        <li><strong>Trang chủ</strong>: Xem danh sách truyện tranh</li>
+        <li><strong>Góc quản trị viên</strong>: Đăng truyện (yêu cầu mật khẩu)</li>
+        <li><strong>Sơ đồ trang</strong>: Thông tin tổng quan về website</li>
+        <li><strong>Thông tin</strong>: (có thể thêm liên hệ, giới thiệu... sau này)</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    function loginUpload() {
+      const pass = prompt("Vui lòng nhập mật khẩu để vào khu quản trị:");
+      if (pass === "matkhau123") {
+        document.getElementById("upload").style.display = "block";
+        location.href = "#upload";
+      } else {
+        alert("Sai mật khẩu!");
+      }
+    }
+  </script>
+</body>
+</html>
