@@ -18,8 +18,9 @@
       color: #333;
     }
 
+    /* HEADER */
     header {
-      background-color: #ffe0b2; /* Cam pastel */
+      background-color: #ffe0b2;
       color: #222;
       padding: 10px 20px;
       text-align: center;
@@ -52,25 +53,123 @@
       display: block;
     }
 
-    nav {
-      background-color: #fff3d1;
-      padding: 10px;
+    /* DANH MỤC THỂ LOẠI */
+    .category-bar {
+      background-color: #ffedcc;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+      border-top: 1px solid #f9d4a4;
+      border-bottom: 1px solid #f9d4a4;
+      font-family: 'Montserrat', sans-serif;
     }
 
-    nav a {
-      text-decoration: none;
+    .category-bar a {
       color: #333;
       font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 10px;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 8px;
       transition: background 0.3s;
-      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    nav a:hover {
-      background-color: #fcd34d;
+    .category-bar a:hover {
+      background-color: #ffe4b2;
+    }
+
+    /* MENU + SEARCH NÚT */
+    .top-tools {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      display: flex;
+      gap: 10px;
+      z-index: 1001;
+    }
+
+    .menu-toggle,
+    .search-toggle {
+      font-size: 24px;
+      cursor: pointer;
+      background: #fff6e0;
+      padding: 6px 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      color: #e67e22;
+    }
+
+    /* TÌM KIẾM */
+    .search-bar {
+      position: fixed;
+      top: 60px;
+      left: 15px;
+      width: calc(100% - 30px);
+      max-width: 300px;
+      display: none;
+      z-index: 1001;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid #f3c57d;
+      background: #fffdf5;
+      font-size: 15px;
+      font-family: 'Montserrat', sans-serif;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 250px;
+      height: 100%;
+      background-color: #fff8e1;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+      transition: left 0.3s ease;
+      z-index: 1000;
+      padding-top: 20px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      padding: 12px 0;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #444;
+      cursor: pointer;
+      transition: background 0.2s;
+      border-bottom: 1px solid #f3e5ab;
+    }
+
+    .sidebar ul li:hover {
+      background-color: #ffe0b2;
+      border-radius: 6px;
+      padding-left: 6px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #d35400;
     }
 
     main {
@@ -109,6 +208,30 @@
   </style>
 </head>
 <body>
+
+  <!-- NÚT MENU + TÌM KIẾM -->
+  <div class="top-tools">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="search-toggle" onclick="toggleSearch()">🔍</div>
+  </div>
+
+  <!-- TÌM KIẾM -->
+  <div id="searchBar" class="search-bar">
+    <input type="text" placeholder="Tìm truyện...">
+  </div>
+
+  <!-- SIDEBAR MENU -->
+  <div id="sidebar" class="sidebar">
+    <div class="close-btn" onclick="toggleMenu()">✖</div>
+    <ul>
+      <li><span>📌</span> Trang chủ</li>
+      <li><span>📖</span> Danh sách truyện</li>
+      <li><span>🏆</span> Bảng xếp hạng</li>
+      <li><span>📚</span> Trọn bộ</li>
+    </ul>
+  </div>
+
+  <!-- HEADER -->
   <header>
     <h1 class="site-title">
       <img src="logo.png" alt="logo" class="logo">
@@ -117,11 +240,14 @@
     <img src="banner.png" alt="Banner Vergiss1409" class="banner-image">
   </header>
 
-  <nav>
-    <a href="#">Trang chủ</a>
-    <a onclick="loginUpload()" style="visibility: hidden;">.</a>
-  </nav>
+  <!-- DANH MỤC -->
+  <div class="category-bar">
+    <a href="#"><span>📘</span> Hoàn Thành</a>
+    <a href="#"><span>🎨</span> Manhwa</a>
+    <a href="#"><span>💖</span> Tình cảm</a>
+  </div>
 
+  <!-- MAIN -->
   <main>
     <section id="upload" class="upload-section">
       <h2>Góc Dành Cho Quản Trị Viên</h2>
@@ -129,6 +255,33 @@
       <form>
         <input type="text" placeholder="Tên truyện">
         <input type="file" multiple>
-        <button type="submit">Tải tru
+        <button type="submit">Tải truyện lên</button>
+      </form>
+    </section>
+  </main>
 
+  <!-- SCRIPT -->
+  <script>
+    function loginUpload() {
+      const pass = prompt("Vui lòng nhập mật khẩu để vào khu quản trị:");
+      if (pass === "matkhau123") {
+        document.getElementById("upload").style.display = "block";
+        location.href = "#upload";
+      } else {
+        alert("Sai mật khẩu!");
+      }
+    }
+
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.left = sidebar.style.left === "0px" ? "-260px" : "0px";
+    }
+
+    function toggleSearch() {
+      const search = document.getElementById("searchBar");
+      search.style.display = search.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</body>
 </html>
+
