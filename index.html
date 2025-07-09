@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head> 
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vergiss1409 - Forget me not</title>
@@ -11,159 +11,263 @@
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      background-color: #fffbe6;
+      background-color: #fffdf2;
     }
 
-    .topbar {
+    header {
+      background-color: #fce4b3;
+      padding: 10px 20px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 10px 16px;
-      background-color: #ffe0b2;
-      position: relative;
-    }
-
-    .left-icons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .icon-btn {
-      background: white;
-      border: none;
-      border-radius: 10px;
-      padding: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      cursor: pointer;
-      font-size: 18px;
-    }
-
-    .site-title {
-      font-size: 1.6em;
-      font-weight: bold;
-      display: flex;
       align-items: center;
-      gap: 6px;
-    }
-
-    .site-title img {
-      height: 28px;
-    }
-
-    .category-bar {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      padding: 10px 0;
-      background: #fffaf2;
-      flex-wrap: wrap;
-    }
-
-    .category-bar a {
-      text-decoration: none;
-      color: #d35400;
-      font-size: 15px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .banner {
-      max-width: 95%;
-      margin: 15px auto;
-      display: block;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .sidebar {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background-color: #fff8e1;
-      box-shadow: 2px 0 6px rgba(0,0,0,0.1);
-      transition: left 0.3s ease;
       z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav-links a {
+      margin-left: 15px;
+      text-decoration: none;
+      color: #e67e22;
+      font-weight: bold;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .admin-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .admin-toggle button {
+      background-color: transparent;
+      color: #aaa;
+      border: none;
+      padding: 8px 12px;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .admin-toggle button:hover {
+      color: #e67e22;
+    }
+
+    .password-container {
+      max-width: 400px;
+      margin: 60px auto 0;
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      display: none;
+    }
+
+    .upload-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: none;
+    }
+
+    h2 {
+      text-align: center;
+      color: #e67e22;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    input[type="text"], input[type="file"], select, textarea, input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #f39c12;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #e67e22;
+    }
+
+    .chapter-group {
+      margin-top: 30px;
+      border-top: 1px solid #eee;
       padding-top: 20px;
     }
 
-    .sidebar.active {
-      left: 0;
+    .chapter-entry {
+      background: #fafafa;
+      padding: 15px;
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+      border-radius: 10px;
     }
 
-    .sidebar .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 14px;
-      font-size: 20px;
-      cursor: pointer;
+    .chapter-image {
+      width: 100%;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
-    .sidebar ul {
-      list-style: none;
-      padding: 20px;
-    }
-
-    .sidebar ul li {
-      padding: 12px 0;
-      font-size: 16px;
+    .chapter-nav {
+      margin-top: 30px;
       display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #444;
-      cursor: pointer;
+      justify-content: space-between;
     }
 
-    @media (max-width: 768px) {
-      .category-bar {
-        overflow-x: auto;
-        justify-content: center;
-        padding: 10px;
-      }
-      .category-bar a {
-        white-space: nowrap;
-      }
+    .chapter-nav a {
+      background-color: #f39c12;
+      color: white;
+      padding: 10px 16px;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .chapter-nav a:hover {
+      background-color: #e67e22;
     }
   </style>
 </head>
 <body>
-
-  <div class="topbar">
-    <div class="left-icons">
-      <button class="icon-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
-      <button class="icon-btn"><i class="fas fa-search"></i></button>
+  <header>
+    <div class="title">Vergiss1409 - Forget me not</div>
+    <div class="nav-links">
+      <a href="#"><i class="fas fa-home"></i> Trang chủ</a>
+      <a href="#"><i class="fas fa-book"></i> Danh sách</a>
     </div>
-    <div class="site-title">
-      <img src="favicon.png" alt="Logo">
-      Vergiss1409
+  </header>
+
+  <!-- Admin form khu vực -->
+  <div class="admin-toggle">
+    <button onclick="showPasswordBox()"><i class="fas fa-tools"></i> Tùy chỉnh</button>
+  </div>
+
+  <div class="password-container" id="passwordBox">
+    <h2>Nhập mật khẩu quản trị</h2>
+    <input type="password" id="adminPass" placeholder="Mật khẩu">
+    <button onclick="checkPassword()">Xác nhận</button>
+  </div>
+
+  <div class="upload-container" id="uploadForm">
+    <h2>Thêm truyện mới</h2>
+    <form id="uploadComicForm">
+      <label for="title">Tên truyện</label>
+      <input type="text" id="title" name="title" required>
+
+      <label for="cover">Ảnh bìa</label>
+      <input type="file" id="cover" name="cover" accept="image/*" required>
+
+      <label for="author">Tác giả</label>
+      <input type="text" id="author" name="author">
+
+      <label for="genre">Thể loại</label>
+      <select id="genre" name="genre">
+        <option>Manhwa</option>
+        <option>Tình cảm</option>
+        <option>Hành động</option>
+        <option>Hài hước</option>
+      </select>
+
+      <label for="desc">Mô tả ngắn</label>
+      <textarea id="desc" name="desc" placeholder="Giới thiệu sơ lược..." required></textarea>
+
+      <div id="chapters">
+        <h3>Danh sách chap</h3>
+      </div>
+
+      <button type="button" onclick="addChapter()"><i class="fas fa-plus"></i> Thêm chap mới</button>
+      <button type="submit"><i class="fas fa-upload"></i> Đăng truyện</button>
+    </form>
+  </div>
+
+  <!-- Giao diện đọc chap truyện -->
+  <main>
+    <h2 style="text-align:center; color:#e67e22; margin-top: 60px;">18+ Bạn Bè Cái Quái Gì - Chap 10</h2>
+    <div style="max-width:900px; margin:0 auto; padding:20px;">
+      <img class="chapter-image" src="https://via.placeholder.com/800x1200" alt="Chap Image 1">
+      <img class="chapter-image" src="https://via.placeholder.com/800x1200" alt="Chap Image 2">
+      <img class="chapter-image" src="https://via.placeholder.com/800x1200" alt="Chap Image 3">
+
+      <div class="chapter-nav">
+        <a href="#"><i class="fas fa-chevron-left"></i> Chap trước</a>
+        <a href="#">Chap sau <i class="fas fa-chevron-right"></i></a>
+      </div>
     </div>
-  </div>
-
-  <div class="category-bar">
-    <a href="#"><i class="fas fa-book"></i> Hoàn Thành</a>
-    <a href="#"><i class="fas fa-palette"></i> Manhwa</a>
-    <a href="#"><i class="fas fa-heart"></i> Tình cảm</a>
-  </div>
-
-  <img src="banner.png" alt="Banner Vergiss1409" class="banner">
-
-  <div class="sidebar" id="sidebar">
-    <span class="close-btn" onclick="toggleSidebar()">&times;</span>
-    <ul>
-      <li><i class="fas fa-home"></i> Trang chủ</li>
-      <li><i class="fas fa-list"></i> Danh sách truyện</li>
-      <li><i class="fas fa-star"></i> Bảng xếp hạng</li>
-      <li><i class="fas fa-folder-open"></i> Trọn bộ</li>
-    </ul>
-  </div>
+  </main>
 
   <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('active');
+    function showPasswordBox() {
+      document.getElementById("passwordBox").style.display = "block";
     }
+
+    function checkPassword() {
+      const input = document.getElementById("adminPass").value;
+      const correct = "matkhau123";
+      if (input === correct) {
+        document.getElementById("passwordBox").style.display = "none";
+        document.getElementById("uploadForm").style.display = "block";
+        window.scrollTo({ top: document.getElementById("uploadForm").offsetTop, behavior: 'smooth' });
+      } else {
+        alert("Sai mật khẩu!");
+      }
+    }
+
+    function addChapter() {
+      const container = document.getElementById("chapters");
+      const index = document.querySelectorAll('.chapter-entry').length + 1;
+      const div = document.createElement("div");
+      div.classList.add("chapter-entry");
+      div.innerHTML = `
+        <label for="chapter${index}">Tên chap</label>
+        <input type="text" name="chapter${index}" placeholder="Chap ${index}" required>
+        <label for="images${index}">Tải ảnh chap</label>
+        <input type="file" name="images${index}" multiple required>
+      `;
+      container.appendChild(div);
+    }
+
+    document.getElementById("uploadComicForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Tải truyện lên thành công (demo)!");
+    });
   </script>
 </body>
 </html>
