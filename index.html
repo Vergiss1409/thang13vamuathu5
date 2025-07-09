@@ -1,83 +1,110 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head> 
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vergiss1409 - Forget me not</title>
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    @font-face {
-      font-family: 'SpringEgg';
-      src: url('https://cdn.jsdelivr.net/gh/fonts-pro/viet-hoa/SpringEgg/SpringEgg.ttf') format('truetype');
-    }
-
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
       background-color: #fffbe6;
-      color: #333;
     }
 
-    /* --- TOP TOOLS --- */
-    .top-tools {
-      position: fixed;
-      top: 15px;
-      left: 15px;
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background-color: #ffe0b2;
+      position: relative;
+    }
+
+    .left-icons {
       display: flex;
       gap: 10px;
-      z-index: 1001;
     }
 
-    .menu-toggle,
-    .search-toggle {
-      font-size: 24px;
-      cursor: pointer;
-      background: #fff6e0;
-      padding: 6px 10px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      color: #e67e22;
-    }
-
-    .search-bar {
-      position: fixed;
-      top: 60px;
-      left: 15px;
-      width: calc(100% - 30px);
-      max-width: 300px;
-      display: none;
-      z-index: 1001;
-    }
-
-    .search-bar input {
-      width: 100%;
-      padding: 10px 14px;
+    .icon-btn {
+      background: white;
+      border: none;
       border-radius: 10px;
-      border: 1px solid #f3c57d;
-      background: #fffdf5;
-      font-size: 15px;
-      font-family: 'Montserrat', sans-serif;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+      font-size: 18px;
     }
 
-    /* --- SIDEBAR MENU --- */
+    .site-title {
+      font-size: 1.6em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .site-title img {
+      height: 28px;
+    }
+
+    .category-bar {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding: 10px 0;
+      background: #fffaf2;
+      flex-wrap: wrap;
+    }
+
+    .category-bar a {
+      text-decoration: none;
+      color: #d35400;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .banner {
+      max-width: 95%;
+      margin: 15px auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0;
-      left: -260px;
+      left: -250px;
       width: 250px;
       height: 100%;
       background-color: #fff8e1;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+      box-shadow: 2px 0 6px rgba(0,0,0,0.1);
       transition: left 0.3s ease;
       z-index: 1000;
       padding-top: 20px;
     }
 
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
     .sidebar ul {
       list-style: none;
       padding: 20px;
-      margin: 0;
     }
 
     .sidebar ul li {
@@ -88,252 +115,60 @@
       gap: 10px;
       color: #444;
       cursor: pointer;
-      transition: background 0.2s;
-      border-bottom: 1px solid #f3e5ab;
     }
 
-    .sidebar ul li:hover {
-      background-color: #ffe0b2;
-      border-radius: 6px;
-      padding-left: 6px;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 14px;
-      font-size: 20px;
-      cursor: pointer;
-      color: #d35400;
-    }
-
-    /* --- HEADER --- */
-    header {
-      background-color: #ffe0b2;
-      color: #222;
-      padding: 10px 20px 0;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .site-title {
-      font-family: 'SpringEgg', cursive;
-      font-size: 1.8em;
-      display: inline-block;
-      vertical-align: middle;
-      margin: 0;
-    }
-
-    .logo {
-      height: 40px;
-      width: auto;
-      vertical-align: middle;
-      margin-right: 8px;
-      background: transparent;
-    }
-
-    .category-bar {
-      background-color: #ffedcc;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 10px 0;
-      border-top: 1px solid #f9d4a4;
-      border-bottom: 1px solid #f9d4a4;
-    }
-
-    .category-bar a {
-      color: #333;
-      font-weight: bold;
-      text-decoration: none;
-      padding: 6px 12px;
-      border-radius: 8px;
-      transition: background 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .category-bar a:hover {
-      background-color: #ffe4b2;
-    }
-
-    .banner-image {
-      max-width: 90%;
-      height: auto;
-      margin: 20px auto 10px;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      display: block;
-    }
-
-    /* --- MAIN --- */
-    main {
-      padding: 20px;
-    }
-
-    .upload-section {
-      border: 2px dashed #ccc;
-      padding: 30px;
-      margin-top: 40px;
-      text-align: center;
-      border-radius: 10px;
-      background-color: #fffdf5;
-      display: none;
-    }
-
-    .upload-section input,
-    .upload-section button {
-      padding: 10px;
-      margin: 10px;
-      font-size: 16px;
-    }
-
-    .upload-section button {
-      background-color: #f9a825;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .upload-section button:hover {
-      background-color: #f57f17;
-    }
-
-    /* --- RESPONSIVE MOBILE --- */
     @media (max-width: 768px) {
-      .site-title {
-        font-size: 1.4em;
-      }
-
-      .logo {
-        height: 30px;
-        margin-right: 6px;
-      }
-
       .category-bar {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 0;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 10px;
       }
-
       .category-bar a {
-        font-size: 15px;
-        padding: 4px 10px;
-      }
-
-      .search-bar {
-        top: 55px;
-        width: calc(100% - 30px);
-      }
-
-      .top-tools {
-        top: 10px;
-        left: 10px;
-        gap: 8px;
-      }
-
-      .menu-toggle,
-      .search-toggle {
-        font-size: 20px;
-        padding: 4px 8px;
-      }
-
-      .sidebar {
-        width: 220px;
-      }
-
-      .sidebar ul li {
-        font-size: 15px;
-        padding: 10px 0;
-      }
-
-      .upload-section {
-        padding: 20px 15px;
+        white-space: nowrap;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOOLS: Menu + Tìm kiếm -->
-  <div class="top-tools">
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <div class="search-toggle" onclick="toggleSearch()">🔍</div>
+  <div class="topbar">
+    <div class="left-icons">
+      <button class="icon-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+      <button class="icon-btn"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="site-title">
+      <img src="favicon.png" alt="Logo">
+      Vergiss1409
+    </div>
   </div>
 
-  <!-- Thanh tìm kiếm -->
-  <div id="searchBar" class="search-bar">
-    <input type="text" placeholder="Tìm truyện...">
+  <div class="category-bar">
+    <a href="#"><i class="fas fa-book"></i> Hoàn Thành</a>
+    <a href="#"><i class="fas fa-palette"></i> Manhwa</a>
+    <a href="#"><i class="fas fa-heart"></i> Tình cảm</a>
   </div>
 
-  <!-- MENU TRƯỢT -->
-  <div id="sidebar" class="sidebar">
-    <div class="close-btn" onclick="toggleMenu()">✖</div>
+  <img src="banner.png" alt="Banner Vergiss1409" class="banner">
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <span class="close-btn" onclick="toggleSidebar()">&times;</span>
     <ul>
-      <li><span>📌</span> Trang chủ</li>
-      <li><span>📖</span> Danh sách truyện</li>
-      <li><span>🏆</span> Bảng xếp hạng</li>
-      <li><span>📚</span> Trọn bộ</li>
+      <li><i class="fas fa-home"></i> Trang chủ</li>
+      <li><i class="fas fa-list"></i> Danh sách truyện</li>
+      <li><i class="fas fa-star"></i> Bảng xếp hạng</li>
+      <li><i class="fas fa-folder-open"></i> Trọn bộ</li>
     </ul>
   </div>
 
-  <!-- HEADER -->
-  <header>
-    <h1 class="site-title">
-      <img src="logo.png" alt="logo" class="logo">
-      Vergiss1409
-    </h1>
-
-    <!-- DANH MỤC -->
-    <div class="category-bar">
-      <a href="#"><span>📘</span> Hoàn Thành</a>
-      <a href="#"><span>🎨</span> Manhwa</a>
-      <a href="#"><span>💖</span> Tình cảm</a>
-    </div>
-
-    <img src="banner.png" alt="Banner Vergiss1409" class="banner-image">
-  </header>
-
-  <!-- NỘI DUNG CHÍNH -->
-  <main>
-    <section id="upload" class="upload-section">
-      <h2>Góc Dành Cho Quản Trị Viên</h2>
-      <p>(Chỉ quản trị viên mới có quyền đăng tải truyện)</p>
-      <form>
-        <input type="text" placeholder="Tên truyện">
-        <input type="file" multiple>
-        <button type="submit">Tải truyện lên</button>
-      </form>
-    </section>
-  </main>
-
-  <!-- SCRIPT -->
   <script>
-    function loginUpload() {
-      const pass = prompt("Vui lòng nhập mật khẩu để vào khu quản trị:");
-      if (pass === "matkhau123") {
-        document.getElementById("upload").style.display = "block";
-        location.href = "#upload";
-      } else {
-        alert("Sai mật khẩu!");
-      }
-    }
-
-    function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.style.left = sidebar.style.left === "0px" ? "-260px" : "0px";
-    }
-
-    function toggleSearch() {
-      const search = document.getElementById("searchBar");
-      search.style.display = search.style.display === "block" ? "none" : "block";
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
     }
   </script>
 </body>
 </html>
+
 
 
