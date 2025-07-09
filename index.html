@@ -4,272 +4,131 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vergiss1409 - Forget me not</title>
-  <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
   <style>
+    @font-face {
+      font-family: 'SpringEgg';
+      src: url('https://cdn.jsdelivr.net/gh/fonts-pro/viet-hoa/SpringEgg/SpringEgg.ttf') format('truetype');
+    }
+
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      background-color: #fffdf2;
-    }
-
-    header {
-      background-color: #fce4b3;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .nav-links a {
-      margin-left: 15px;
-      text-decoration: none;
-      color: #e67e22;
-      font-weight: bold;
-    }
-
-    .title {
-      font-size: 18px;
-      font-weight: bold;
+      background-color: #fffbe6;
       color: #333;
     }
 
-    .admin-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-
-    .admin-toggle button {
-      background-color: transparent;
-      color: #aaa;
-      border: none;
-      padding: 8px 12px;
-      font-size: 14px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .admin-toggle button:hover {
-      color: #e67e22;
-    }
-
-    .password-container {
-      max-width: 400px;
-      margin: 60px auto 0;
-      background: #fff;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    header {
+      background-color: #ffcc70;
+      color: #222;
+      padding: 20px;
       text-align: center;
-      display: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: relative;
     }
 
-    .upload-container {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      display: none;
+    .site-title {
+      font-family: 'SpringEgg', cursive;
+      font-size: 2.5em;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0;
     }
 
-    h2 {
-      text-align: center;
-      color: #e67e22;
-      margin-bottom: 20px;
+    .logo {
+      height: 50px;
+      width: auto;
+      vertical-align: middle;
+      margin-right: 10px;
+      background: transparent;
     }
 
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-      color: #444;
-    }
-
-    input[type="text"], input[type="file"], select, textarea, input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-sizing: border-box;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    button {
+    .banner-image {
+      max-width: 90%;
+      height: auto;
       margin-top: 20px;
-      width: 100%;
-      background-color: #f39c12;
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
-    button:hover {
-      background-color: #e67e22;
-    }
-
-    .chapter-group {
-      margin-top: 30px;
-      border-top: 1px solid #eee;
-      padding-top: 20px;
-    }
-
-    .chapter-entry {
-      background: #fafafa;
-      padding: 15px;
-      border: 1px solid #ddd;
-      margin-bottom: 15px;
-      border-radius: 10px;
-    }
-
-    .chapter-image {
-      width: 100%;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    .chapter-nav {
-      margin-top: 30px;
+    nav {
+      background-color: #ffeaa7;
+      padding: 10px;
       display: flex;
       justify-content: space-between;
     }
 
-    .chapter-nav a {
-      background-color: #f39c12;
-      color: white;
-      padding: 10px 16px;
+    nav a {
       text-decoration: none;
-      border-radius: 6px;
+      color: #333;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 10px;
       transition: background 0.3s;
+      cursor: pointer;
     }
 
-    .chapter-nav a:hover {
-      background-color: #e67e22;
+    nav a:hover {
+      background-color: #fcd34d;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .comic-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .comic-item {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      background-color: #fff;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .comic-item img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .comic-item h3 {
+      margin-top: 10px;
+      color: #e67e22;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="title">Vergiss1409 - Forget me not</div>
-    <div class="nav-links">
-      <a href="#"><i class="fas fa-home"></i> Trang chủ</a>
-      <a href="#"><i class="fas fa-book"></i> Danh sách</a>
-    </div>
+    <h1 class="site-title">
+      <img src="logo.png" alt="logo" class="logo">
+      Vergiss1409
+    </h1>
+    <img src="banner.png" alt="Banner Vergiss1409" class="banner-image">
   </header>
 
-  <!-- Admin form khu vực -->
-  <div class="admin-toggle">
-    <button onclick="showPasswordBox()"><i class="fas fa-tools"></i> Tùy chỉnh</button>
-  </div>
+  <nav>
+    <a href="#">Trang chủ</a>
+    <a href="#">Thể loại</a>
+    <a href="#">Tình cảm</a>
+    <a href="#">Hoàn thành</a>
+  </nav>
 
-  <div class="password-container" id="passwordBox">
-    <h2>Nhập mật khẩu quản trị</h2>
-    <input type="password" id="adminPass" placeholder="Mật khẩu">
-    <button onclick="checkPassword()">Xác nhận</button>
-  </div>
-
-  <div class="upload-container" id="uploadForm">
-    <h2>Thêm truyện mới</h2>
-    <form id="uploadComicForm">
-      <label for="title">Tên truyện</label>
-      <input type="text" id="title" name="title" required>
-
-      <label for="cover">Ảnh bìa</label>
-      <input type="file" id="cover" name="cover" accept="image/*" required>
-
-      <label for="author">Tác giả</label>
-      <input type="text" id="author" name="author">
-
-      <label for="genre">Thể loại</label>
-      <select id="genre" name="genre">
-        <option>Manhwa</option>
-        <option>Tình cảm</option>
-        <option>Hành động</option>
-        <option>Hài hước</option>
-      </select>
-
-      <label for="desc">Mô tả ngắn</label>
-      <textarea id="desc" name="desc" placeholder="Giới thiệu sơ lược..." required></textarea>
-
-      <div id="chapters">
-        <h3>Danh sách chap</h3>
-      </div>
-
-      <button type="button" onclick="addChapter()"><i class="fas fa-plus"></i> Thêm chap mới</button>
-      <button type="submit"><i class="fas fa-upload"></i> Đăng truyện</button>
-    </form>
-  </div>
-
-  <!-- Giao diện đọc chap truyện -->
   <main>
-    <h2 style="text-align:center; color:#e67e22; margin-top: 60px;">18+ Bạn Bè Cái Quái Gì - Chap 10</h2>
-    <div style="max-width:900px; margin:0 auto; padding:20px;">
-      <img class="chapter-image" src="https://via.placeholder.com/800x1200" alt="Chap Image 1">
-      <img class="chapter-image" src="https://via.placeholder.com/800x1200" alt="Chap Image 2">
-      <img class="chapter-image" src="https://via.placeholder.com/800x1200" alt="Chap Image 3">
-
-      <div class="chapter-nav">
-        <a href="#"><i class="fas fa-chevron-left"></i> Chap trước</a>
-        <a href="#">Chap sau <i class="fas fa-chevron-right"></i></a>
+    <section class="comic-list">
+      <div class="comic-item">
+        <img src="https://via.placeholder.com/250x350" alt="Bìa truyện">
+        <h3>Tên truyện</h3>
+        <p>Mô tả ngắn hoặc tóm tắt truyện...</p>
       </div>
-    </div>
+    </section>
   </main>
-
-  <script>
-    function showPasswordBox() {
-      document.getElementById("passwordBox").style.display = "block";
-    }
-
-    function checkPassword() {
-      const input = document.getElementById("adminPass").value;
-      const correct = "matkhau123";
-      if (input === correct) {
-        document.getElementById("passwordBox").style.display = "none";
-        document.getElementById("uploadForm").style.display = "block";
-        window.scrollTo({ top: document.getElementById("uploadForm").offsetTop, behavior: 'smooth' });
-      } else {
-        alert("Sai mật khẩu!");
-      }
-    }
-
-    function addChapter() {
-      const container = document.getElementById("chapters");
-      const index = document.querySelectorAll('.chapter-entry').length + 1;
-      const div = document.createElement("div");
-      div.classList.add("chapter-entry");
-      div.innerHTML = `
-        <label for="chapter${index}">Tên chap</label>
-        <input type="text" name="chapter${index}" placeholder="Chap ${index}" required>
-        <label for="images${index}">Tải ảnh chap</label>
-        <input type="file" name="images${index}" multiple required>
-      `;
-      container.appendChild(div);
-    }
-
-    document.getElementById("uploadComicForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      alert("Tải truyện lên thành công (demo)!");
-    });
-  </script>
 </body>
+</html>
+
 </html>
 
 
